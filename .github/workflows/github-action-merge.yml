@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+env:
+  IMAGE_NAME: localization-be
+
 jobs:
   release:
     runs-on: ubuntu-20.04
@@ -38,6 +41,17 @@ jobs:
           release_name: v${{ steps.semver.outputs.VERSION }}
           draft: false
           prerelease: false
+      - name: Log in to Dockerhub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Build and push to Dockerhub
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ steps.semver.outputs.VERSION }}
 #      - name: Upload build artifacts
 #        uses: actions/upload-artifact@v3
 #        with:
