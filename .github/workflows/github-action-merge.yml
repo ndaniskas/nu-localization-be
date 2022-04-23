@@ -31,16 +31,6 @@ jobs:
         with:
           gradle-version: 7.4.1
           arguments: build
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ steps.semver.outputs.VERSION }}
-          release_name: v${{ steps.semver.outputs.VERSION }}
-          draft: false
-          prerelease: false
       - name: Log in to Dockerhub
         uses: docker/login-action@v1
         with:
@@ -51,9 +41,14 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:${{ steps.semver.outputs.VERSION }}
-#      - name: Upload build artifacts
-#        uses: actions/upload-artifact@v3
-#        with:
-#          name: build-artifact
-#          path: build/libs/localization-be.jar
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ steps.semver.outputs.VERSION }}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.semver.outputs.VERSION }}
+          release_name: v${{ steps.semver.outputs.VERSION }}
+          draft: false
+          prerelease: false
