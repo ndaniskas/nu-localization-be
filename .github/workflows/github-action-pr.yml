@@ -6,7 +6,8 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -17,3 +18,5 @@ jobs:
         with:
           gradle-version: 7.4.1
           arguments: build
+      - name: Check code coverage
+        uses: codecov/codecov-action@v2
