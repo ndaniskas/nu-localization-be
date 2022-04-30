@@ -20,3 +20,7 @@ jobs:
           arguments: build
       - name: Check code coverage
         uses: codecov/codecov-action@v2
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/gradle@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
