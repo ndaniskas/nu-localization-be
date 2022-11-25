@@ -6,6 +6,8 @@ metadata:
   tags:
     - localization
     - api
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: openapi
   lifecycle: experimental
