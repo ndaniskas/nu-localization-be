@@ -1,0 +1,69 @@
+openapi: "3.0.3"
+info:
+  title: "Localization API"
+  description: "A simple localization API"
+  version: "1.0.0"
+servers:
+  - url: "http://local"
+
+paths:
+  /api/v1/translations:
+    get:
+      summary: Get all translations
+      description: Get all translations
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/TranslationApiOutput"
+                example: |
+                  [
+                    {
+                      "id": "d290f1ee-6c54-4b01-90e6-d701748f0859",
+                      "slug": "app.title",
+                      "text": {
+                        "en-US": "US title",
+                        "fr-FR": "French title",
+                        "el-GR": "Greek title"
+                      },
+                      "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    },
+                    {
+                      "id": "c390f1ee-6c54-4b01-90e6-d701748f0860",
+                      "slug": "app.description",
+                      "text": {
+                        "en-US": "US description",
+                        "fr-FR": "French description",
+                        "el-GR": "Greek description"
+                      },
+                      "parentId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+                    }
+                  ]
+
+components:
+  schemas:
+    TranslationApiOutput:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: d290f1ee-6c54-4b01-90e6-d701748f0859
+        slug:
+          type: string
+        text:
+          type: object
+          additionalProperties:
+            type: string
+        parentId:
+          type: string
+          format: uuid
+      required:
+        - id
+        - slug
+        - parentId
+        - text

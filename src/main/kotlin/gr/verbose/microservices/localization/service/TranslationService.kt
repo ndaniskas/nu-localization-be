@@ -9,5 +9,5 @@ class TranslationService(private val translationRepository: TranslationRepositor
 
     @Transactional(readOnly = true)
     fun getTranslations() =
-            translationRepository.findAll()
+        translationRepository.findAll()
 }

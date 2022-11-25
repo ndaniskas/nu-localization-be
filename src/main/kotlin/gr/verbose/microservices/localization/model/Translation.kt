@@ -8,7 +8,7 @@ import java.util.UUID
 const val TRANSLATION_COLLECTION_NAME = "translations"
 
 @Document(collection = TRANSLATION_COLLECTION_NAME)
-data class Translation (
+data class Translation(
     @Id
     val id: UUID = UUID.randomUUID(),
     val slug: String,
