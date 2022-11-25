@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: nu-localization-be
+  description: The Localization API
+  tags:
+    - localization
+    - api
+spec:
+  type: openapi
+  lifecycle: experimental
+  owner: ndaniskas
+  definition:
+    $text: https://github.com/ndaniskas/nu-localization-be/blob/main/openapi.yaml

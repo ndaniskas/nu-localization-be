@@ -14,13 +14,13 @@ import java.util.concurrent.TimeUnit
 class PersistenceConfig {
     @Bean
     fun reactiveTransactionManager(dbFactory: ReactiveMongoDatabaseFactory) =
-            ReactiveMongoTransactionManager(
-                    dbFactory,
-                    TransactionOptions.builder()
-                            .readPreference(ReadPreference.primary())
-                            .readConcern(ReadConcern.MAJORITY)
-                            .writeConcern(WriteConcern.MAJORITY)
-                            .maxCommitTime(60, TimeUnit.SECONDS)
-                            .build()
-            )
+        ReactiveMongoTransactionManager(
+            dbFactory,
+            TransactionOptions.builder()
+                .readPreference(ReadPreference.primary())
+                .readConcern(ReadConcern.MAJORITY)
+                .writeConcern(WriteConcern.MAJORITY)
+                .maxCommitTime(60, TimeUnit.SECONDS)
+                .build()
+        )
 }

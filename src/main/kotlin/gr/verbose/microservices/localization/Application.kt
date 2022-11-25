@@ -9,5 +9,5 @@ import org.springframework.data.mongodb.repository.config.EnableReactiveMongoRep
 class Application
 
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+    runApplication<Application>(*args)
 }
